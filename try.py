@@ -109,12 +109,19 @@ class dualLVDS_FullHD_device( cb_elec_device ):
     pid = 0x003f
     name = 'dualLVDS/FullHD+'
 
-#for d in hid.enumerate():
-#    keys = d.keys()
-#    keys.sort()
-#    for key in keys:
-#        print "%s : %s" % (key, d[key] if isinstance( d[key], basestring ) else hex( d[key] ) )
-#    print ""
+supported_devices = [
+    multitouch_device,
+    singletouch_device,
+    dualLVDS_FullHD_device
+]
+
+def find_supported_device():
+    for d in hid.enumerate():
+        for dev in supported_devices:
+            if dev.vid == d['vendor_id'] and dev.pid == d['product_id']:
+                return dev
+    else:
+        raise Exception, 'No supported device found!'
 
 try:
     print "Opening device"
