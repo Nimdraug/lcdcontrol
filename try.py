@@ -23,7 +23,15 @@ class simple_hid_device( hid.device ):
 
     def update( self ):
         self.write( [ 0, 0, 0 ] )
-        return self.read( 2 )
+        self.parse_status( self.read( 2 ) )
+
+    def parse_status( self, status ):
+        b1,b2 = status
+
+        print 'backlight on', b2 & 128
+        print 'autobright on', b2 & 64
+        print 'backlight level', b2 & 0b111111
+        print 'ambient light level', b1
 
 class cb_elec_device( simple_hid_device ):
     vid = 0x04d8
@@ -56,7 +64,7 @@ try:
     print "Product: %s" % h.product
     print "Serial No: %s" % h.serial_number
 
-    print h.update()
+    h.update()
 
     print "Closing device"
     h.close()
