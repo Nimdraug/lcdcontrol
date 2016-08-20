@@ -21,6 +21,10 @@ class simple_hid_device( hid.device ):
     def open( self ):
         super( simple_hid_device, self ).open( self.vid, self.pid )
 
+    def update( self ):
+        self.write( [ 0, 0, 0 ] )
+        return self.read( 2 )
+
 class cb_elec_device( simple_hid_device ):
     vid = 0x04d8
 
