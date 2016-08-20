@@ -10,9 +10,11 @@ class simple_hid_device( hid.device ):
     def manufacturer( self ):
         return self.get_manufacturer_string()
 
+    @property
     def product( self ):
         return self.get_product_string()
 
+    @property
     def serial_number( self ):
         return self.get_serial_number_string()
 
