@@ -24,7 +24,7 @@ class singletouch_device( cb_elec_device ):
     pid = 0xf723
     name = '7" and 10" single-touch firmware'
 
-class singletouch_device( cb_elec_device ):
+class dualLVDS_FullHD_device( cb_elec_device ):
     pid = 0x003f
     name = 'dualLVDS/FullHD+'
 
