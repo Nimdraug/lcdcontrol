@@ -122,7 +122,7 @@ try:
     h.open()
 
     print "Manufacturer: %s" % h.manufacturer
-    print "Product: %s" % h.product
+    print "Product: %s (%s)" % ( h.product, h.name )
     print "Serial No: %s" % h.serial_number
 
     h.backlight_level = 10
