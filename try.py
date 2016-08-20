@@ -48,9 +48,9 @@ try:
     h = singletouch_device()
     h.open()
 
-    print "Manufacturer: %s" % h.get_manufacturer_string()
-    print "Product: %s" % h.get_product_string()
-    print "Serial No: %s" % h.get_serial_number_string()
+    print "Manufacturer: %s" % h.manufacturer
+    print "Product: %s" % h.product
+    print "Serial No: %s" % h.serial_number
 
     print "Closing device"
     h.close()
