@@ -26,12 +26,12 @@ class simple_hid_device( hid.device ):
         self.parse_status( self.read( 2 ) )
 
     def parse_status( self, status ):
-        b1,b2 = status
+        b1, b2 = status
 
-        print 'backlight on', b2 & 128
-        print 'autobright on', b2 & 64
-        print 'backlight level', b2 & 0b111111
-        print 'ambient light level', b1
+        self._backlight_on = b2 & 128 and True
+        self._autobright_on = b2 & 64 and True
+        self._backlight_level = b2 & 0b111111
+        self.ambient_level = b1
 
 class cb_elec_device( simple_hid_device ):
     vid = 0x04d8
