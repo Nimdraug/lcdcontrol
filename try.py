@@ -23,6 +23,10 @@ class simple_hid_device( hid.device ):
 
 class cb_elec_device( simple_hid_device ):
     vid = 0x04d8
+    _backlight_on = None
+    _autobright_on = None
+    _backlight_level = None
+    ambient_level = None
 
     def update( self ):
         self.write( [ 0, 0, 0 ] )
