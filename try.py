@@ -71,6 +71,12 @@ class cb_elec_device( simple_hid_device ):
 
         return self._backlight_level
 
+    @backlight_level.setter
+    def backlight_level( self, level ):
+        self.write( [ 0, 0, 32, level ] )
+
+        self.parse_status( self.read( 2 ) )
+
     def backlight_max( self ):
         self.write( [ 0, 0, 4 ] )
 
@@ -109,12 +115,16 @@ try:
     print "Product: %s" % h.product
     print "Serial No: %s" % h.serial_number
 
-    h.autobright_toggle()
+    h.backlight_level = 10
 
     print "Backlight on?", h.backlight_on
     print "Backlight Level", h.backlight_level
     print "Auto Brightness on?", h.autobright_on
     print "Ambient Light Level", h.ambient_level
+
+    time.sleep( 2 )
+
+    h.backlight_max()
 
     print "Closing device"
     h.close()
