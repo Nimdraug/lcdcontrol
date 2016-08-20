@@ -55,7 +55,7 @@ class cb_elec_device( simple_hid_device ):
         return self._autobright_on
 
     def autobright_toggle( self ):
-        self.write( [ 0, 2, 2 ] )
+        self.write( [ 0, 0, 2 ] )
 
         self.parse_status( self.read( 2 ) )
 
