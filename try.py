@@ -125,7 +125,7 @@ def find_supported_device():
 
 try:
     print "Opening device"
-    h = singletouch_device()
+    h = find_supported_device()
     h.open()
 
     print "Manufacturer: %s" % h.manufacturer
