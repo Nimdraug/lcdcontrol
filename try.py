@@ -54,17 +54,17 @@ class cb_elec_device( simple_hid_device ):
 
         return self._autobright_on
 
+    def autobright_toggle( self ):
+        self.write( [ 0, 2, 2 ] )
+
+        self.parse_status( self.read( 2 ) )
+
     @property
     def backlight_level( self ):
         if self._backlight_level == None:
             self.update()
 
         return self._backlight_level
-
-    def backlight_toggle( self ):
-        self.write( [ 0, 0b00001, 0 ] )
-
-        self.parse_status( self.read( 2 ) )
 
 class multitouch_device( cb_elec_device ):
     pid = 0xf724
@@ -78,12 +78,12 @@ class dualLVDS_FullHD_device( cb_elec_device ):
     pid = 0x003f
     name = 'dualLVDS/FullHD+'
 
-for d in hid.enumerate():
-    keys = d.keys()
-    keys.sort()
-    for key in keys:
-        print "%s : %s" % (key, d[key] if isinstance( d[key], basestring ) else hex( d[key] ) )
-    print ""
+#for d in hid.enumerate():
+#    keys = d.keys()
+#    keys.sort()
+#    for key in keys:
+#        print "%s : %s" % (key, d[key] if isinstance( d[key], basestring ) else hex( d[key] ) )
+#    print ""
 
 try:
     print "Opening device"
@@ -94,7 +94,7 @@ try:
     print "Product: %s" % h.product
     print "Serial No: %s" % h.serial_number
 
-    h.backlight_toggle()
+    h.autobright_toggle()
 
     print "Backlight on?", h.backlight_on
     print "Backlight Level", h.backlight_level
