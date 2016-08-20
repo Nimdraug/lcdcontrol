@@ -56,6 +56,8 @@ try:
     print "Product: %s" % h.product
     print "Serial No: %s" % h.serial_number
 
+    print h.update()
+
     print "Closing device"
     h.close()
 
