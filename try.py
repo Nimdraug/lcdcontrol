@@ -90,6 +90,9 @@ try:
     print "Serial No: %s" % h.serial_number
 
     print "Backlight on?", h.backlight_on
+    print "Backlight Level", h.backlight_level
+    print "Auto Brightness on?", h.autobright_on
+    print "Ambient Light Level", h.ambient_level
 
     print "Closing device"
     h.close()
