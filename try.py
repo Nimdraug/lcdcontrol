@@ -40,26 +40,12 @@ for d in hid.enumerate():
 
 try:
     print "Opening device"
-    h = hid.device()
-    h.open(0x461, 0x20)
-    #h.open(0x1941, 0x8021) # Fine Offset USB Weather Station
+    h = singletouch_device()
+    h.open()
 
     print "Manufacturer: %s" % h.get_manufacturer_string()
     print "Product: %s" % h.get_product_string()
     print "Serial No: %s" % h.get_serial_number_string()
-
-    # try non-blocking mode by uncommenting the next line
-    #h.set_nonblocking(1)
-
-    # try writing some data to the device
-    for k in range(10):
-        for i in [0, 1]:
-            for j in [0, 1]:
-                h.write([0x80, i, j])
-                d = h.read(5)
-                if d:
-                    print d
-                time.sleep(0.05)
 
     print "Closing device"
     h.close()
