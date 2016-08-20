@@ -47,6 +47,11 @@ class cb_elec_device( simple_hid_device ):
 
         return self._backlight_on
 
+    def backlight_toggle( self ):
+        self.write( [ 0, 0, 16 ] )
+
+        self.parse_status( self.read( 2 ) )
+
     @property
     def autobright_on( self ):
         if self._autobright_on == None:
