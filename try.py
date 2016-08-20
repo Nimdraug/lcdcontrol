@@ -94,6 +94,8 @@ try:
     print "Product: %s" % h.product
     print "Serial No: %s" % h.serial_number
 
+    h.backlight_toggle()
+
     print "Backlight on?", h.backlight_on
     print "Backlight Level", h.backlight_level
     print "Auto Brightness on?", h.autobright_on
