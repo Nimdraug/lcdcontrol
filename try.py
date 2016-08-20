@@ -87,6 +87,16 @@ class cb_elec_device( simple_hid_device ):
 
         self.parse_status( self.read( 2 ) )
 
+    def backlight_dec( self ):
+        self.write( [ 0, 0, 64 ] )
+
+        self.parse_status( self.read( 2 ) )
+
+    def backlight_inc( self ):
+        self.write( [ 0, 0, 128 ] )
+
+        self.parse_status( self.read( 2 ) )
+
 class multitouch_device( cb_elec_device ):
     pid = 0xf724
     name = '7" and 10" multi-touch firmware'
