@@ -21,6 +21,9 @@ class simple_hid_device( hid.device ):
     def open( self ):
         super( simple_hid_device, self ).open( self.vid, self.pid )
 
+class cb_elec_device( simple_hid_device ):
+    vid = 0x04d8
+
     def update( self ):
         self.write( [ 0, 0, 0 ] )
         self.parse_status( self.read( 2 ) )
@@ -39,9 +42,6 @@ class simple_hid_device( hid.device ):
             self.update()
 
         return self._backlight_on
-
-class cb_elec_device( simple_hid_device ):
-    vid = 0x04d8
 
 class multitouch_device( cb_elec_device ):
     pid = 0xf724
@@ -71,7 +71,7 @@ try:
     print "Product: %s" % h.product
     print "Serial No: %s" % h.serial_number
 
-    h.update()
+    print "Backlight on?", h.backlight_on
 
     print "Closing device"
     h.close()
