@@ -13,6 +13,9 @@ class simple_hid_device( hid.device ):
     def product( self ):
         return self.get_product_string()
 
+    def open( self ):
+        super( simple_hid_device, self ).open( self.vid, self.pid )
+
 class cb_elec_device( simple_hid_device ):
     vid = 0x04d8
 
