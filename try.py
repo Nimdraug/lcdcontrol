@@ -1,11 +1,26 @@
 import hid
 import time
 
+class cb_elec_device( hid.device ):
+    vid = 0x04d8
+
+class multitouch_device( cb_elec_device ):
+    pid = 0xf724
+    name = '7" and 10" multi-touch firmware'
+
+class singletouch_device( cb_elec_device ):
+    pid = 0xf723
+    name = '7" and 10" single-touch firmware'
+
+class singletouch_device( cb_elec_device ):
+    pid = 0x003f
+    name = 'dualLVDS/FullHD+'
+
 for d in hid.enumerate():
     keys = d.keys()
     keys.sort()
     for key in keys:
-        print "%s : %s" % (key, d[key])
+        print "%s : %s" % (key, d[key] if isinstance( d[key], basestring ) else hex( d[key] ) )
     print ""
 
 try:
