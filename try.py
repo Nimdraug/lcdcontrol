@@ -1,7 +1,19 @@
 import hid
 import time
 
-class cb_elec_device( hid.device ):
+class simple_hid_device( hid.device ):
+    vid = None
+    pid = None
+    name = ''
+
+    @property
+    def manufacturer( self ):
+        return self.get_manufacturer_string()
+
+    def product( self ):
+        return self.get_product_string()
+
+class cb_elec_device( simple_hid_device ):
     vid = 0x04d8
 
 class multitouch_device( cb_elec_device ):
