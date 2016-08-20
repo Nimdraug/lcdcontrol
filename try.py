@@ -13,6 +13,9 @@ class simple_hid_device( hid.device ):
     def product( self ):
         return self.get_product_string()
 
+    def serial_number( self ):
+        return self.get_serial_number_string()
+
     def open( self ):
         super( simple_hid_device, self ).open( self.vid, self.pid )
 
