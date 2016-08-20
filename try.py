@@ -33,6 +33,13 @@ class simple_hid_device( hid.device ):
         self._backlight_level = b2 & 0b111111
         self.ambient_level = b1
 
+    @property
+    def backlight_on( self ):
+        if self._backlight_on == None:
+            self.update()
+
+        return self._backlight_on
+
 class cb_elec_device( simple_hid_device ):
     vid = 0x04d8
 
