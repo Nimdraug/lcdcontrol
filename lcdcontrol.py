@@ -165,6 +165,8 @@ def main():
                 h.backlight_inc()
             elif args.command == '-':
                 h.backlight_dec()
+            elif args.command.isdigit():
+                h.backlight_level = int( args.command )
             else:
                 print 'Unknown command: %s' % args.command
 
