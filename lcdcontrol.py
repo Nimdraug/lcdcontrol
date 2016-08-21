@@ -140,7 +140,8 @@ def main():
     parser.add_argument( '-s', '--status', action = 'store_true', help = 'display device status' )
     parser.add_argument( '-o', '--output', action = 'store', default = 'state', choices = [ 'state', 'full', 'json' ],
         help = 'status output type' )
-    parser.add_argument( 'command', nargs = '?', help = 'command to send to device' )
+    parser.add_argument( 'command', nargs = '?',
+        help = 'command to send to device ( auto, toggle, max, min, +, - or backlight level (0 - 18) )' )
 
     args = parser.parse_args()
 
