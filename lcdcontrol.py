@@ -1,5 +1,5 @@
+import argparse
 import hid
-import time
 
 class simple_hid_device( hid.device ):
     vid = None
@@ -134,6 +134,17 @@ def output_info( h ):
     print "Ambient Light Level", h.ambient_level
 
 def main():
+    parser = argparse.ArgumentParser(
+        description = 'control backlighting on a Chalkboard Electronics LCD Touch Screen' )
+    parser.add_argument( '-s', '--status', action = 'store_true', help = 'display device status' )
+    parser.add_argument( '-o', '--output', action = 'store', default = 'state', choices = [ 'state', 'full', 'json' ],
+        help = 'status output type' )
+    parser.add_argument( 'command', nargs = '?', help = 'command to send to device' )
+
+    args = parser.parse_args()
+
+    print args
+
     try:
         h = find_supported_device()()
         h.open()
