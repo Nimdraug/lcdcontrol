@@ -123,32 +123,28 @@ def find_supported_device():
     else:
         raise Exception, 'No supported device found!'
 
-try:
-    print "Opening device"
-    h = find_supported_device()
-    h.open()
-
+def output_info( h ):
     print "Manufacturer: %s" % h.manufacturer
     print "Product: %s (%s)" % ( h.product, h.name )
     print "Serial No: %s" % h.serial_number
-
-    h.backlight_level = 10
 
     print "Backlight on?", h.backlight_on
     print "Backlight Level", h.backlight_level
     print "Auto Brightness on?", h.autobright_on
     print "Ambient Light Level", h.ambient_level
 
-    time.sleep( 2 )
+def main():
+    try:
+        h = find_supported_device()()
+        h.open()
+    except IOError, ex:
+        print 'Unable to open device: %s' % ex
+    else:
+        h.backlight_level = 10
 
-    h.backlight_max()
+        output_info( h )
 
-    print "Closing device"
-    h.close()
+        h.close()
 
-except IOError, ex:
-    print ex
-    print "You probably don't have the hard coded test hid. Update the hid.device line"
-    print "in this script with one from the enumeration list output above and try again."
-
-print "Done"
+if __name__ == '__main__':
+    main()
