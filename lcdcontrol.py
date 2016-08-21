@@ -152,9 +152,7 @@ def main():
     except IOError, ex:
         print 'Unable to open device: %s' % ex
     else:
-        h.backlight_level = 10
-
-        if args.status:
+        if args.status or args.command == None:
             output_info( h, args.output )
 
         h.close()
