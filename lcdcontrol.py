@@ -152,6 +152,22 @@ def main():
     except IOError, ex:
         print 'Unable to open device: %s' % ex
     else:
+        if args.command:
+            if args.command == 'auto':
+                h.autobright_toggle()
+            elif args.command == 'toggle':
+                h.backlight_toggle()
+            elif args.command == 'max':
+                h.backlight_max()
+            elif args.command == 'min':
+                h.backlight_min()
+            elif args.command == '+':
+                h.backlight_inc()
+            elif args.command == '-':
+                h.backlight_dec()
+            else:
+                print 'Unknown command: %s' % args.command
+
         if args.status or args.command == None:
             output_info( h, args.output )
 
