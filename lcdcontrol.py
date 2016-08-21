@@ -123,10 +123,11 @@ def find_supported_device():
     else:
         raise Exception, 'No supported device found!'
 
-def output_info( h ):
-    print "Manufacturer: %s" % h.manufacturer
-    print "Product: %s (%s)" % ( h.product, h.name )
-    print "Serial No: %s" % h.serial_number
+def output_info( h, output = 'state' ):
+    if output == 'full':
+        print "Manufacturer: %s" % h.manufacturer
+        print "Product: %s (%s)" % ( h.product, h.name )
+        print "Serial No: %s" % h.serial_number
 
     print "Backlight on?", h.backlight_on
     print "Backlight Level", h.backlight_level
@@ -153,7 +154,8 @@ def main():
     else:
         h.backlight_level = 10
 
-        output_info( h )
+        if args.status:
+            output_info( h, args.output )
 
         h.close()
 
