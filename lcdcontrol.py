@@ -144,8 +144,6 @@ def main():
 
     args = parser.parse_args()
 
-    print args
-
     try:
         h = find_supported_device()()
         h.open()
