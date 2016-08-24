@@ -125,6 +125,8 @@ def find_supported_device():
         raise Exception, 'No supported device found!'
 
 def output_info( h, output = 'state' ):
+    if output == 'report':
+        print h.get_feature_report()
     if output == 'full':
         print "Manufacturer: %s" % h.manufacturer
         print "Product: %s (%s)" % ( h.product, h.name )
@@ -139,7 +141,7 @@ def main():
     parser = argparse.ArgumentParser(
         description = 'control backlighting on a Chalkboard Electronics LCD Touch Screen' )
     parser.add_argument( '-s', '--status', action = 'store_true', help = 'display device status' )
-    parser.add_argument( '-o', '--output', action = 'store', default = 'state', choices = [ 'state', 'full', 'json' ],
+    parser.add_argument( '-o', '--output', action = 'store', default = 'state', choices = [ 'state', 'full', 'report', 'json' ],
         help = 'status output type' )
     parser.add_argument( 'command', nargs = '?',
         help = 'command to send to device ( auto, toggle, max, min, +, - or backlight level (0 - 18) )' )
