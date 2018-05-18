@@ -144,7 +144,6 @@ def main():
 
     try:
         h = find_supported_device()()
-        h.open()
     except IOError, ex:
         print 'Unable to open device: %s' % ex
     else:
