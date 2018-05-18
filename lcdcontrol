@@ -2,25 +2,19 @@
 import argparse
 import hid
 
-class simple_hid_device( hid.device ):
+class simple_hid_device( hid.Device ):
     vid = None
     pid = None
     name = ''
 
-    @property
-    def manufacturer( self ):
-        return self.get_manufacturer_string()
+    def __init__( self ):
+        super( simple_hid_device, self ).__init__( self.vid, self.pid )
 
-    @property
-    def product( self ):
-        return self.get_product_string()
+    def write( self, bytes ):
+        return super( simple_hid_device, self ).write( ''.join( [ chr( b ) for b in bytes ] ) )
 
-    @property
-    def serial_number( self ):
-        return self.get_serial_number_string()
-
-    def open( self ):
-        super( simple_hid_device, self ).open( self.vid, self.pid )
+    def read( self, *a, **kw ):
+        return [ for ord( b ) in super( simple_hid_device, self ).read( *a, **kw ) ]
 
 class cb_elec_device( simple_hid_device ):
     vid = 0x04d8
