@@ -14,7 +14,7 @@ class simple_hid_device( hid.Device ):
         return super( simple_hid_device, self ).write( ''.join( [ chr( b ) for b in bytes ] ) )
 
     def read( self, *a, **kw ):
-        return [ for ord( b ) in super( simple_hid_device, self ).read( *a, **kw ) ]
+        return [ ord( b ) for b in super( simple_hid_device, self ).read( *a, **kw ) ]
 
 class cb_elec_device( simple_hid_device ):
     vid = 0x04d8
