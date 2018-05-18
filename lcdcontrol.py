@@ -120,7 +120,7 @@ def find_supported_device():
 
 def output_info( h, output = 'state' ):
     if output == 'report':
-        print h.get_feature_report()
+        print h.get_feature_report(1,100)
     if output == 'full':
         print "Manufacturer: %s" % h.manufacturer
         print "Product: %s (%s)" % ( h.product, h.name )
