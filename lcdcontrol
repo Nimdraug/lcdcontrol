@@ -124,7 +124,7 @@ def output_info( h, output = 'state' ):
     if output == 'full':
         print "Manufacturer: %s" % h.manufacturer
         print "Product: %s (%s)" % ( h.product, h.name )
-        print "Serial No: %s" % h.serial_number
+        print "Serial No: %s" % h.serial
 
     print "Backlight on?", h.backlight_on
     print "Backlight Level", h.backlight_level
